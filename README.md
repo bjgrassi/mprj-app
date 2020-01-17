@@ -1,8 +1,11 @@
 # Challenge Project for MPRJ
-### Web Application made in Angular and i'ts in portuguese
+### Web Application made in React in portuguese
 
 ## About
 - List of all 1st evolutions of Pokemons
+- Routes
+- Lists of evolutions and berries
+- Flavor filter
 
 ### Prerequisites
 Node.js - [click for download](https://nodejs.org/en/)
@@ -25,14 +28,18 @@ After get into the folder, install dependencies
 
 
 ```yarn start```
+
 Starts the development server.
 
 `yarn build`
+
 Bundles the app into static files for production.
 
 `yarn test`
+
 Starts the test runner.
 
 `yarn eject`
+
 Removes this tool and copies build dependencies, configuration files
 and scripts into the app directory. If you do this, you can’t go back!
