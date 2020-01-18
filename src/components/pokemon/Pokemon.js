@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import EvolutionList from './evolution/EvolutionList';
 
 const TYPE_COLORS = {
     bug: 'B1C12E',
@@ -108,7 +109,7 @@ export default class Pokemon extends Component {
                 .join(' ');
             })
             .join(', ');
-
+            
         const evs = pokemonRes.data.stats
             .filter(stat => {
                 if (stat.effort > 0) {
@@ -190,11 +191,7 @@ export default class Pokemon extends Component {
                     <div className="row">
                         <div className="col-5">
                             <h4 className="mx-auto">
-                                {this.state.name
-                                    .toLowerCase()
-                                    .split(' ')
-                                    .map(s => s.charAt(0).toUpperCase() + s.substring(1))
-                                    .join(' ')}
+                                {this.state.name.charAt(0).toUpperCase() + this.state.name.slice(1)}
                             </h4>
                         </div>
                         <div className="col-7">
@@ -456,6 +453,12 @@ export default class Pokemon extends Component {
                             </div>
                         </div>
                     </div>
+                    <hr />
+                    <EvolutionList
+                        key={this.state.pokemonIndex}
+                        pokemonIndex={this.state.pokemonIndex}
+                        name={this.state.name}
+                    ></EvolutionList>
                 </div>
                 <div className="card-footer text-muted">
                     Data From{' '}

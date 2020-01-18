@@ -8,6 +8,7 @@ import backgroundImage from './pattern.png'
 import NavBar from './components/layout/NavBar'
 import Dashboard from './components/layout/Dashboard';
 import Pokemon from './components/pokemon/Pokemon'
+import BerryList from './components/berry/BerryList';
 
 class App extends Component {
     render() {
@@ -19,6 +20,7 @@ class App extends Component {
               <Switch>
                 <Route exact path="/" component={Dashboard} />
                 <Route exact path="/pokemon/:pokemonIndex" component={Pokemon} />
+                <Route exact path="/berries" component={BerryList} />
               </Switch>
             </div>
           </div>

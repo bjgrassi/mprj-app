@@ -6,8 +6,9 @@ export default class NavBar extends Component {
         return (
             <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top" >
                 <div className="container">
-                    <Link to="/" className="navbar-brand mr-0 col-md-5 col-sm-4 col-xs-6 navbar-link">Home</Link>
-                    <a className="navbar-brand mr-0 col-md-7 col-sm-8 col-xs-6">Pokemon - Challenge</a>
+                    <Link to="/" className="navbar-brand mr-0 col-md-2 col-sm-4 navbar-link">Pokemons</Link>
+                    <Link to="/berries" className="navbar-brand mr-0 col-md-2 col-sm-4 navbar-link">Berries</Link>
+                    <a className="navbar-brand mr-0 col-md-8 col-sm-4 text-right">MPRJ Challenge</a>
                 </div>
             </nav>
         )
