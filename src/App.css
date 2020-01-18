@@ -9,3 +9,7 @@
 .navbar {
     background-color: #ef5350!important;
 }
+
+.navbar .navbar-link:hover {
+    color: black;
+}
