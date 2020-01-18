@@ -189,7 +189,13 @@ export default class Pokemon extends Component {
                 <div className="card-header">
                     <div className="row">
                         <div className="col-5">
-                            <h5>{this.state.pokemonIndex}</h5>
+                            <h4 className="mx-auto">
+                                {this.state.name
+                                    .toLowerCase()
+                                    .split(' ')
+                                    .map(s => s.charAt(0).toUpperCase() + s.substring(1))
+                                    .join(' ')}
+                            </h4>
                         </div>
                         <div className="col-7">
                             <div className="float-right">
@@ -222,13 +228,6 @@ export default class Pokemon extends Component {
                             />
                         </div>
                         <div className="col-md-9">
-                            <h4 className="mx-auto">
-                                {this.state.name
-                                    .toLowerCase()
-                                    .split(' ')
-                                    .map(s => s.charAt(0).toUpperCase() + s.substring(1))
-                                    .join(' ')}
-                            </h4>
                             <div className="row align-items-center">
                                 <div className={`col-12 col-md-${this.state.statTitleWidth}`}>
                                     HP

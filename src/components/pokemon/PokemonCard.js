@@ -5,8 +5,8 @@ import styled from 'styled-components';
 import spinner from '../pokemon/loading.gif'
 
 const Sprite = styled.img`
-    width: 50px;
-    height: 50px;
+    width: 100px;
+    height: 100px;
     display: none;
 `;
 
@@ -25,11 +25,8 @@ const Card = styled.div`
 const StyledLink = styled(Link)`
     text-decoration: none;
     color: black;
-    &:focus,
-    &:hover,
-    &:visited,
-    &:link,
-    &:active {
+    &:hover {
+        color: #ef5350;
         text-decoration: none;
     }
 `
@@ -57,14 +54,11 @@ export default class PokemonCard extends Component {
 
     render() {
         return (
-            <div className="col-md-5 col-sm-6 mb-5">
+            <div className="col-md-3 col-sm-6 mb-5">
                 <StyledLink to={`pokemon/${this.state.pokemonIndex}`}>
                     <Card className="card">
-                        <h5 className="card-header">
-                            {this.state.pokemonIndex}
-                        </h5>
                         {this.state.imageLoading ? (
-                            <img src={spinner} style={{width: '50px', heigth: '50px'}} className="card-img-top rounded mx-auto d-block mt-2"></img>
+                            <img src={spinner} style={{width: '100px', heigth: '100px'}} className="card-img-top rounded mx-auto d-block mt-2"></img>
                         ) : null }
                         <Sprite 
                             className="card-img-top rounded mx-auto mt-2"
@@ -81,8 +75,8 @@ export default class PokemonCard extends Component {
                                 <span className="badge badge-danger mt-2"></span>
                             </h6>
                         ) : null }
-                        <div className="card-body mx-auto">
-                            <h6 className="card-title">
+                        <div className="card-header">
+                            <h6 className="card-title text-center">
                                 {this.state.name.charAt(0).toUpperCase() + this.state.name.slice(1)}
                             </h6>
                         </div>
