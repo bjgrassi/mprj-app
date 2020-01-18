@@ -370,7 +370,7 @@ export default class Pokemon extends Component {
                 </div>
                 <hr />
                 <div className="card-body">
-                    <h5 class="card-title text-center">Profile</h5>
+                    <h5 className="card-title text-center">Profile</h5>
                     <div className="row">
                         <div className="col-md-6">
                             <div className="row">
@@ -396,9 +396,9 @@ export default class Pokemon extends Component {
                                     <h6 className="float-right">Gender Ratio:</h6>
                                 </div>
                                 <div className="col-6">
-                                    <div class="progress">
+                                    <div className="progress">
                                         <div
-                                            class="progress-bar"
+                                            className="progress-bar"
                                             role="progressbar"
                                             style={{
                                             width: `${this.state.genderRatioFemale}%`,
@@ -411,7 +411,7 @@ export default class Pokemon extends Component {
                                         <small>{this.state.genderRatioFemale}</small>
                                     </div>
                                     <div
-                                        class="progress-bar"
+                                        className="progress-bar"
                                         role="progressbar"
                                         style={{
                                         width: `${this.state.genderRatioMale}%`,
@@ -457,7 +457,7 @@ export default class Pokemon extends Component {
                         </div>
                     </div>
                 </div>
-                <div class="card-footer text-muted">
+                <div className="card-footer text-muted">
                     Data From{' '}
                     <a href="https://pokeapi.co/" target="_blank" className="card-link">
                         PokeAPI.co
