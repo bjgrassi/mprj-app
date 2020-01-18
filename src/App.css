@@ -1,6 +1,9 @@
 .App {
-    padding-top: 60px;
+    background-attachment: fixed;
+    background-position: center;
+    background-color: #fafafa;
     min-height: 100vh;
+    padding-top: 60px;
 }
 
 .navbar {

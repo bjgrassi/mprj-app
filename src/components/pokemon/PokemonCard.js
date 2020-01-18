@@ -8,6 +8,18 @@ const Sprite = styled.img`
     display: none;
 `;
 
+const Card = styled.div`
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bexier(0.25, 0.8, 0.25, 1);
+    &:hover {
+        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    }
+    -moz-user-select: none;
+    -website-user-select: none;
+    user-select: none;
+    -o-user-select: none;
+`
+
 export default class PokemonCard extends Component {
     state = {
         name: '',
@@ -32,13 +44,13 @@ export default class PokemonCard extends Component {
     render() {
         return (
             <div className="col-md-5 col-sm-6 mb-5">
-                <div className="card">
+                <Card className="card">
                     <h5 className="card-header">
                         {this.state.pokemonIndex}
-                        {this.state.imageLoading ? (
-                            <img src={spinner} style={{width: '50px', heigth: '50px'}} className="card-img-top rounded mx-auto d-block mt-2"></img>
-                        ) : null }
                     </h5>
+                    {this.state.imageLoading ? (
+                        <img src={spinner} style={{width: '50px', heigth: '50px'}} className="card-img-top rounded mx-auto d-block mt-2"></img>
+                    ) : null }
                     <Sprite 
                         className="card-img-top rounded mx-auto mt-2"
                         onLoad={() => this.setState({imageLoading: false})}
@@ -59,7 +71,7 @@ export default class PokemonCard extends Component {
                             {this.state.name.charAt(0).toUpperCase() + this.state.name.slice(1)}
                         </h6>
                     </div>
-                </div>
+                </Card>
             </div>
         )
     }
