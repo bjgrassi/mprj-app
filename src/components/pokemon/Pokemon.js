@@ -92,11 +92,11 @@ export default class Pokemon extends Component {
             }
         });
 
-        // Convert Decimeters to Feet... The + 0.0001 * 100 ) / 100 is for rounding to two decimal places :)
-        const height =  Math.round((pokemonRes.data.height * 0.328084 + 0.00001) * 100) / 100;
+        // Decimeters 
+        const height =  pokemonRes.data.height;
 
-        //Pounds
-        const weight =  Math.round((pokemonRes.data.weight * 0.220462 + 0.00001) * 100) / 100;
+        //Kg
+        const weight =  pokemonRes.data.weight;
 
         const types = pokemonRes.data.types.map(type => type.type.name);
 
@@ -131,8 +131,7 @@ export default class Pokemon extends Component {
             let description = '';
             res.data.flavor_text_entries.some(flavor => {
                 if (flavor.language.name === 'en') {
-                    description = flavor.flavor_text;
-                    return;
+                    return description = flavor.flavor_text;
                 }
             });
             const femaleRate = res.data['gender_rate'];
@@ -219,7 +218,7 @@ export default class Pokemon extends Component {
                 <div className="card-body">
                     <div className="row align-items-center">
                         <div className="col-md-3">
-                            <img
+                            <img alt="Pokemon"
                                 src={this.state.imageUrl}
                                 className="card-img-top rounded mx-auto mt-2"
                             />
@@ -375,13 +374,13 @@ export default class Pokemon extends Component {
                                     <h6 className="float-right">Height:</h6>
                                 </div>
                                 <div className="col-6">
-                                    <h6 className="float-left">{this.state.height} ft.</h6>
+                                    <h6 className="float-left">{this.state.height} Dm.</h6>
                                 </div>
                                 <div className="col-6">
                                     <h6 className="float-right">Weight:</h6>
                                 </div>
                                 <div className="col-6">
-                                    <h6 className="float-left">{this.state.weight} lbs</h6>
+                                    <h6 className="float-left">{this.state.weight} Kg.</h6>
                                 </div>
                                 <div className="col-6">
                                     <h6 className="float-right">Catch Rate:</h6>
@@ -462,7 +461,7 @@ export default class Pokemon extends Component {
                 </div>
                 <div className="card-footer text-muted">
                     Data From{' '}
-                    <a href="https://pokeapi.co/" target="_blank" className="card-link">
+                    <a href="https://pokeapi.co/" target="_blank" rel="noopener noreferrer" className="card-link">
                         PokeAPI.co
                     </a>
                 </div>

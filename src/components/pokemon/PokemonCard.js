@@ -58,7 +58,7 @@ export default class PokemonCard extends Component {
                 <StyledLink to={`pokemon/${this.state.pokemonIndex}`}>
                     <Card className="card">
                         {this.state.imageLoading ? (
-                            <img src={spinner} style={{width: '100px', heigth: '100px'}} className="card-img-top rounded mx-auto d-block mt-2"></img>
+                            <img alt="spinner" src={spinner} style={{width: '100px', heigth: '100px'}} className="card-img-top rounded mx-auto d-block mt-2"></img>
                         ) : null }
                         <Sprite 
                             className="card-img-top rounded mx-auto mt-2"
