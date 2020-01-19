@@ -33,12 +33,12 @@ export default class BerryList extends Component {
                             url={berry.url}
                             index={berry.url.split("/")[berry.url.split('/').length - 2]}
                             imageUrl={`${this.state.imageUrl}${berry.name}-berry.png?raw=true`}
-                            typeClass={this.state.typeClass}
+                            typeClass="berry"
                         />
                     ))}
                 </div>
                 ) : (
-                <h1>Loading Pokemons...</h1>
+                <h1>Loading Berries...</h1>
             )}
             </React.Fragment> 
         )

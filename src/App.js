@@ -20,8 +20,8 @@ class App extends Component {
             <div className="container">
               <Switch>
                 <Route exact path="/" component={Dashboard} />
-                <Route exact path="pokemon/:index" component={Pokemon} />
-                <Route exact path="/berries" component={BerryList} />
+                <Route exact path="/pokemon/:index" component={Pokemon} />
+                <Route exact path="/berry" component={BerryList} />
               </Switch>
             </div>
           </div>
