@@ -8,22 +8,23 @@ export default class Card extends Component {
     state = {
         name: '',
         index: '',
+        typeClass: '',
         imageLoading: true,
         toManyRequests: false
     }
 
     componentDidMount() {
-        const {name, index, imageUrl} = this.props;
+        const {name, index, imageUrl, typeClass} = this.props;
 
         this.setState({
-            name, index, imageUrl
+            name, index, imageUrl, typeClass
         })
     }
 
     render() {
         return (
             <div className="col-md-3 col-sm-6 mb-5">
-                <StyledLink to={`${this.state.index}`}>
+                <StyledLink to={`${this.state.typeClass}/${this.state.index}`}>
                     <CardStyle className="card">
                         {this.state.imageLoading ? (
                             <img alt="spinner" src={spinner} style={{width: '100px', heigth: '100px'}} className="card-img-top rounded mx-auto d-block mt-2"></img>

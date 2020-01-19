@@ -1,48 +1,46 @@
 import React, { Component } from 'react'
 import Axios from 'axios';
+import Card from '../layout/Card';
 
 export default class BerryList extends Component {
     state = {
-        name: '',
-        next: '',
-        urlBerry: '',
+        urlBerry: "https://pokeapi.co/api/v2/berry/",
+        berry: '',
+        imageUrl: '',
         flavor: '',
         potency: ''
     }
 
     async componentDidMount() {
-        const url = `https://pokeapi.co/api/v2/berry/`;
 
-        const response = await Axios.get(url);
+        const response = await Axios.get(this.state.urlBerry);
 
         this.setState({
-            name: response.data.results,
-            next: response.data.next
+            berry: response.data.results,
+            imageUrl: 'https://github.com/PokeAPI/sprites/blob/master/sprites/items/berries/',
         })
     }
 
     render() {
         return (
             <React.Fragment>
-                <h1>List of Berries</h1>
-                {this.state.name ? (
-                    <div>
-                        {this.state.name.map(berry => (
-                            <div className="card" key={berry.name}>
-                                <div className="card-header">
-                                    <h6 className="card-title text-center">
-                                        {berry.name.charAt(0).toUpperCase() + berry.name.slice(1)}
-                                    </h6>
-                                    <div></div>
-                                </div>
-                            </div>
-                        ))}
-                        {this.state.next}
-                    </div>
+            { this.state.berry ? (
+                <div className="row">
+                    {this.state.berry.map(berry => (
+                        <Card 
+                            key={berry.name}
+                            name={berry.name}
+                            url={berry.url}
+                            index={berry.url.split("/")[berry.url.split('/').length - 2]}
+                            imageUrl={`${this.state.imageUrl}${berry.name}-berry.png?raw=true`}
+                            typeClass={this.state.typeClass}
+                        />
+                    ))}
+                </div>
                 ) : (
-                    <h3> Searching Berries...</h3>
-                )}
-            </React.Fragment>
+                <h1>Loading Pokemons...</h1>
+            )}
+            </React.Fragment> 
         )
     }
 }

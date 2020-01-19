@@ -3,13 +3,12 @@ import axios from 'axios'
 
 import Card from "../layout/Card"
 
-import { StyledLink } from '../../utils/StyleComponent'
-
 export default class PokemonList extends Component {
     state = {
         url: "https://pokeapi.co/api/v2/pokemon/",
         index: [],
         imageUrl: null,
+        typeClass: 'pokemon',
         pokemon: null,
         prevPage: null,
         nextPage: null
@@ -35,6 +34,7 @@ export default class PokemonList extends Component {
                             url={pokemon.url}
                             index={pokemon.url.split("/")[pokemon.url.split('/').length - 2]}
                             imageUrl={`${this.state.imageUrl}${pokemon.url.split("/")[pokemon.url.split('/').length - 2]}.png?raw=true`}
+                            typeClass={this.state.typeClass}
                         />
                     ))}
                 </div>

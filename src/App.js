@@ -5,9 +5,10 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
 import backgroundImage from './pattern.png'
 
+import Pokemon from './components/pokemon/Pokemon';
+import Pagination from './components/layout/Pagination';
 import NavBar from './components/layout/NavBar'
 import Dashboard from './components/layout/Dashboard';
-import Pokemon from './components/pokemon/Pokemon'
 import BerryList from './components/berry/BerryList';
 
 class App extends Component {
@@ -19,7 +20,7 @@ class App extends Component {
             <div className="container">
               <Switch>
                 <Route exact path="/" component={Dashboard} />
-                <Route exact path="/:pokemonIndex" component={Pokemon} />
+                <Route exact path="pokemon/:index" component={Pokemon} />
                 <Route exact path="/berries" component={BerryList} />
               </Switch>
             </div>
