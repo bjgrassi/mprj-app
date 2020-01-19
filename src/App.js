@@ -19,7 +19,7 @@ class App extends Component {
             <div className="container">
               <Switch>
                 <Route exact path="/" component={Dashboard} />
-                <Route exact path="/pokemon/:pokemonIndex" component={Pokemon} />
+                <Route exact path="/:pokemonIndex" component={Pokemon} />
                 <Route exact path="/berries" component={BerryList} />
               </Switch>
             </div>

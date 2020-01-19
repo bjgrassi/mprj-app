@@ -1,9 +1,17 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-export default function Pagination() {
-    return (
-        <div>
-            
-        </div>
-    )
+export default class Pagination extends Component {
+    state = {
+        users: null,
+        total: null,
+        per_page: null,
+        current_page: null
+    }
+    render() {
+        return (
+            <div>
+                
+            </div>
+        )
+    }
 }

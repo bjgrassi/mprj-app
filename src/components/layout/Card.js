@@ -1,62 +1,30 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 
-import styled from 'styled-components';
 import spinner from '../pokemon/loading.gif'
+import { StyledLink, Sprite, CardStyle } from '../../utils/StyleComponent'
 
-const Sprite = styled.img`
-    width: 100px;
-    height: 100px;
-    display: none;
-`;
 
-const Card = styled.div`
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-    transition: all 0.3s cubic-bexier(0.25, 0.8, 0.25, 1);
-    &:hover {
-        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-    }
-    -moz-user-select: none;
-    -website-user-select: none;
-    user-select: none;
-    -o-user-select: none;
-`
-
-const StyledLink = styled(Link)`
-    text-decoration: none;
-    color: black;
-    &:hover {
-        color: #ef5350;
-        text-decoration: none;
-    }
-`
-
-export default class PokemonCard extends Component {
+export default class Card extends Component {
     state = {
         name: '',
-        imageUrl: '',
-        pokemonIndex: '',
+        index: '',
         imageLoading: true,
         toManyRequests: false
     }
 
     componentDidMount() {
-        const {name, url} = this.props;
-        const pokemonIndex = url.split("/")[url.split('/').length - 2];
-        const imageUrl = `https://github.com/PokeAPI/sprites/blob/master/sprites/pokemon/${pokemonIndex}.png?raw=true`
+        const {name, index, imageUrl} = this.props;
 
         this.setState({
-            name,
-            imageUrl,
-            pokemonIndex
+            name, index, imageUrl
         })
     }
 
     render() {
         return (
             <div className="col-md-3 col-sm-6 mb-5">
-                <StyledLink to={`pokemon/${this.state.pokemonIndex}`}>
-                    <Card className="card">
+                <StyledLink to={`${this.state.index}`}>
+                    <CardStyle className="card">
                         {this.state.imageLoading ? (
                             <img alt="spinner" src={spinner} style={{width: '100px', heigth: '100px'}} className="card-img-top rounded mx-auto d-block mt-2"></img>
                         ) : null }
@@ -80,7 +48,7 @@ export default class PokemonCard extends Component {
                                 {this.state.name.charAt(0).toUpperCase() + this.state.name.slice(1)}
                             </h6>
                         </div>
-                    </Card>
+                    </CardStyle>
                 </StyledLink>
             </div>
         )

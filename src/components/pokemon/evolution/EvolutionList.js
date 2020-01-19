@@ -11,7 +11,7 @@ export default class EvolutionList extends Component {
         const { pokemonIndex } = this.props;
     
         // Urls for pokemon information
-        const pokemonUrl = `https://pokeapi.co/api/v2/evolution-trigger/${pokemonIndex}/`;
+        const pokemonUrl = `https://pokeapi.co/api/v2/evolution-chain/${pokemonIndex}/`;
 
         const pokemonRes = await Axios.get(pokemonUrl);
         console.log(pokemonRes)
