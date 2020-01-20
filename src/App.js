@@ -6,7 +6,6 @@ import './App.css';
 import backgroundImage from './pattern.png'
 
 import Pokemon from './components/pokemon/Pokemon';
-import Pagination from './components/layout/Pagination';
 import NavBar from './components/layout/NavBar'
 import Dashboard from './components/layout/Dashboard';
 import BerryList from './components/berry/BerryList';
