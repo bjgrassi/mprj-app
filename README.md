@@ -1,5 +1,5 @@
 # Challenge Project for MPRJ
-### Web Application made in React in portuguese
+### Web Application made in React
 
 ## About
 - List of all 1st evolutions of Pokemons
