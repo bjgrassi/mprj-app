@@ -2,6 +2,7 @@
   "name": "mprj-app",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://pokeapi.co/api/v2",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",

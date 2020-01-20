@@ -9,15 +9,13 @@ export default class EvolutionList extends Component {
     }
 
     async componentDidMount() {
-        const { index, name } = this.props;
+        const { index } = this.props.match.params;
+        const { name } = this.props;
 
         // Urls for pokemon information
         const speciesUrl = `https://pokeapi.co/api/v2/pokemon-species/${index}/`;
 
-        const evolutionRes = await Axios.get(speciesUrl, {headers: {
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
-        }});
+        const evolutionRes = await Axios.get(speciesUrl);
 
         const evolutionUrl = evolutionRes.data.evolution_chain.url
         
@@ -44,20 +42,16 @@ export default class EvolutionList extends Component {
             return res[0].species 
         })
 
-        
-
         this.setState({
             name, index, evolutionOne, evolutionTwo, noEvolution1, noEvolution2
         })
     }
 
     render() {
-        const noEvolution1 = this.state.noEvolution1
-        const noEvolution2 = this.state.noEvolution2
         return (
             <div className="card-body">
-                <h5 className="card-title text-center">Evolutions</h5>
-                { noEvolution2 ? (
+                { this.state.noEvolution2 ? (<h5 className="card-title text-center">Evolutions</h5>): (null)}
+                { this.state.noEvolution2 ? (
                     <table className="table table-bordered">
                         <thead>
                             <tr>
@@ -66,7 +60,7 @@ export default class EvolutionList extends Component {
                             </tr>
                         </thead>
                             <tbody>
-                                { noEvolution1 ? ( 
+                                { this.state.noEvolution1 ? ( 
                                     this.state.evolutionOne.map(pokemon => (
                                         <tr key={pokemon.url} >
                                             <th scope="row">{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</th>
@@ -82,7 +76,7 @@ export default class EvolutionList extends Component {
                                 ))}
                             </tbody>
                     </table>
-                ): ( <h5>Don't have evolutions</h5> )}
+                ): ( <h5 className="card-title text-center">Don't have evolutions</h5> )}
             </div>
         )
     }

@@ -60,7 +60,7 @@ export default class Pokemon extends Component {
         const pokemonSpeciesUrl = `https://pokeapi.co/api/v2/pokemon-species/${index}/`;
     
         // Get Pokemon Information
-        const pokemonRes = await axios.get(pokemonUrl,{headers: {'Access-Control-Allow-Origin': '*'}});
+        const pokemonRes = await axios.get(pokemonUrl);
     
         const name = pokemonRes.data.name;
         const imageUrl = pokemonRes.data.sprites.front_default;
@@ -456,8 +456,9 @@ export default class Pokemon extends Component {
                     <EvolutionList
                         key={this.state.index}
                         index={this.state.index}
-                        name={this.state.name}
-                    ></EvolutionList>
+                        name={this.state.name} 
+                        {...this.props}
+                    />
                 </div>
                 <div className="card-footer text-muted">
                     Data From{' '}
