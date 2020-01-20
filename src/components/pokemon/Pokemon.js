@@ -26,7 +26,7 @@ const TYPE_COLORS = {
 export default class Pokemon extends Component {
     state = {
         name: '',
-        pokeIndex: '',
+        index: '',
         imageUrl: '',
         types: [],
         description: '',
@@ -54,15 +54,13 @@ export default class Pokemon extends Component {
 
     async componentDidMount() {
         const { index } = this.props.match.params;
-        const pokeIndex = index;
         
         // Urls for pokemon information
-        const pokemonUrl = `https://pokeapi.co/api/v2/pokemon/${pokeIndex}/`;
-        const pokemonSpeciesUrl = `https://pokeapi.co/api/v2/pokemon-species/${pokeIndex}/`;
+        const pokemonUrl = `https://pokeapi.co/api/v2/pokemon/${index}/`;
+        const pokemonSpeciesUrl = `https://pokeapi.co/api/v2/pokemon-species/${index}/`;
     
         // Get Pokemon Information
-        const pokemonRes = await axios.get(pokemonUrl);
-        console.log(pokemonRes)
+        const pokemonRes = await axios.get(pokemonUrl,{headers: {'Access-Control-Allow-Origin': '*'}});
     
         const name = pokemonRes.data.name;
         const imageUrl = pokemonRes.data.sprites.front_default;
@@ -166,7 +164,7 @@ export default class Pokemon extends Component {
         
         this.setState({
             imageUrl,
-            pokeIndex,
+            index,
             name,
             types,
             stats: {
