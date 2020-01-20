@@ -4,7 +4,7 @@ import Card from '../layout/Card';
 
 export default class BerryList extends Component {
     state = {
-        urlBerry: "https://pokeapi.co/api/v2/berry/",
+        urlBerry: "https://pokeapi.co/api/v2/berry/?offset=0&limit=64",
         berry: '',
         imageUrl: '',
         flavor: '',
@@ -12,7 +12,6 @@ export default class BerryList extends Component {
     }
 
     async componentDidMount() {
-
         const response = await Axios.get(this.state.urlBerry);
 
         this.setState({

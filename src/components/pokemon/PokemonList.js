@@ -5,14 +5,13 @@ import Card from "../layout/Card"
 
 export default class PokemonList extends Component {
     state = {
-        url: "https://pokeapi.co/api/v2/pokemon/",
+        url: "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=964",
         index: [],
         imageUrl: null,
         typeClass: 'pokemon',
-        pokemon: null,
-        prevPage: null,
-        nextPage: null
+        pokemon: null
     }
+
     async componentDidMount() {
         const res = await axios.get(this.state.url)
 
