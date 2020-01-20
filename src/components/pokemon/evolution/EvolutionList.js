@@ -21,12 +21,12 @@ export default class EvolutionList extends Component {
         
         const evolutionArray = await Axios.get(evolutionUrl)
 
-        let noEvolution1 = true;
-        let noEvolution2 = true
+        let hasEvolution1 = true;
+        let hasEvolution2 = true
         
         const evolutionOne = evolutionArray.data.chain.evolves_to.map(res => {
             if(res.species.name === name)
-                noEvolution1 = false
+                hasEvolution1 = false
 
             return res.species
         })
@@ -37,21 +37,21 @@ export default class EvolutionList extends Component {
 
         const evolutionTwo = evolutionTwoComing.map(res => { 
             if(res[0].species.name === name)
-                noEvolution2 = false
+                hasEvolution2 = false
 
             return res[0].species 
         })
 
         this.setState({
-            name, index, evolutionOne, evolutionTwo, noEvolution1, noEvolution2
+            name, index, evolutionOne, evolutionTwo, hasEvolution1, hasEvolution2
         })
     }
 
     render() {
         return (
             <div className="card-body">
-                { this.state.noEvolution2 ? (<h5 className="card-title text-center">Evolutions</h5>): (null)}
-                { this.state.noEvolution2 ? (
+                { this.state.hasEvolution2 ? (<h5 className="card-title text-center">Evolutions</h5>): (null)}
+                { this.state.hasEvolution2 ? (
                     <table className="table table-bordered">
                         <thead>
                             <tr>
@@ -60,7 +60,7 @@ export default class EvolutionList extends Component {
                             </tr>
                         </thead>
                             <tbody>
-                                { this.state.noEvolution1 ? ( 
+                                { this.state.hasEvolution1 ? ( 
                                     this.state.evolutionOne.map(pokemon => (
                                         <tr key={pokemon.url} >
                                             <th scope="row">{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</th>
