@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import axios from 'axios'
 
 import Card from "../layout/Card"
+import Pagination from 'react-js-pagination';
+
 
 export default class PokemonList extends Component {
     state = {
@@ -9,24 +11,37 @@ export default class PokemonList extends Component {
         index: [],
         imageUrl: null,
         typeClass: 'pokemon',
-        pokemon: null
+        pokemon: null,
+        itemsCountPerPage: '',
+        activePage: '',
+        isLoaded: false
     }
+
+    handlePageChange(pageNumber) {
+        this.setState({activePage: pageNumber});
+      }
 
     async componentDidMount() {
         const res = await axios.get(this.state.url)
 
         this.setState({ 
             pokemon: res.data.results,
-            imageUrl: `https://github.com/PokeAPI/sprites/blob/master/sprites/pokemon/`
+            imageUrl: `https://github.com/PokeAPI/sprites/blob/master/sprites/pokemon/`,
+            itemsCountPerPage: 20,
+            activePage: 1,
+            
         })
     }
 
     render() {
+        let indexOfLastTodo = this.state.activePage * this.state.itemsCountPerPage;
+        let indexOfFirstTodo = indexOfLastTodo - this.state.itemsCountPerPage;
+        let renderedPokemons = this.state.pokemon && this.state.pokemon.slice(indexOfFirstTodo, indexOfLastTodo);
         return (
             <React.Fragment>
-            { this.state.pokemon ? (
+            { renderedPokemons ? (
                 <div className="row">
-                    {this.state.pokemon.map(pokemon => (
+                    {renderedPokemons.map(pokemon => (
                         <Card 
                             key={pokemon.name}
                             name={pokemon.name}
@@ -36,6 +51,19 @@ export default class PokemonList extends Component {
                             typeClass={this.state.typeClass}
                         />
                     ))}
+                    <div className="row col justify-content-center">
+                        <Pagination 
+                            activePage={this.state.activePage}
+                            itemsCountPerPage={this.state.itemsCountPerPage}
+                            totalItemsCount={this.state.pokemon.length}
+                            pageRangeDisplayed={8}
+                            onChange={this.handlePageChange.bind(this)}
+                            innerClass="pagination"
+                            activeClass="active"
+                            itemClass="page-item"
+                            linkClass="page-link"
+                            />
+                    </div>
                 </div>
                 ) : (
                 <h1>Loading Pokemons...</h1>
