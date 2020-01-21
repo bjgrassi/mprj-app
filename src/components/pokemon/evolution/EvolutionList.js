@@ -22,36 +22,48 @@ export default class EvolutionList extends Component {
         const evolutionArray = await Axios.get(evolutionUrl)
 
         let hasEvolution1 = true;
-        let hasEvolution2 = true
+        let hasEvolution2 = true;
+        let canEnvolve = false;
         
         const evolutionOne = evolutionArray.data.chain.evolves_to.map(res => {
-            if(res.species.name === name)
-                hasEvolution1 = false
-
-            return res.species
+            if(res.species != undefined) {
+                if(res.species.name === name)
+                    hasEvolution1 = false
+                else {
+                    canEnvolve = true;
+                }
+                return res.species
+            }
+            return false
         })
 
         const evolutionTwoComing = evolutionArray.data.chain.evolves_to.map(res => {
             return res.evolves_to
         })
 
-        const evolutionTwo = evolutionTwoComing.map(res => { 
-            if(res[0].species.name === name)
-                hasEvolution2 = false
+        const evolutionTwo = evolutionTwoComing.map(res => {
+            if(res[0] != undefined) {
+                if(res[0].species.name === name) {
+                    hasEvolution2 = false
+                    canEnvolve = false;
+                }
 
-            return res[0].species 
+                return res[0].species
+            }
+            hasEvolution2 = false
+            return false
         })
 
         this.setState({
-            name, index, evolutionOne, evolutionTwo, hasEvolution1, hasEvolution2
+            name, index, evolutionOne, evolutionTwo, hasEvolution1, hasEvolution2, canEnvolve
         })
     }
 
     render() {
         return (
             <div className="card-body">
-                { this.state.hasEvolution2 ? (<h5 className="card-title text-center">Evolutions</h5>): (null)}
-                { this.state.hasEvolution2 ? (
+                { this.state.hasEvolution2 || this.state.canEnvolve ? (<h5 className="card-title text-center">Evolutions</h5>): (null)}
+                { this.state.hasEvolution2 || this.state.canEnvolve ? (
                     <table className="table table-bordered">
                         <thead>
                             <tr>
@@ -68,12 +80,12 @@ export default class EvolutionList extends Component {
                                         </tr>
                                     ))
                                 ): (null)}
-                                {this.state.evolutionTwo.map(pokemon => (
+                                {this.state.hasEvolution2 ? (this.state.evolutionTwo.map(pokemon => (
                                     <tr key={pokemon.name} >
                                         <th scope="row">{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</th>
                                         <td><Link to={`${pokemon.url.split("/")[pokemon.url.split('/').length - 2]}`} target="_blank">Go to Page</Link></td>
                                     </tr>
-                                ))}
+                                ))): (null)}
                             </tbody>
                     </table>
                 ): ( <h5 className="card-title text-center">Don't have evolutions</h5> )}
